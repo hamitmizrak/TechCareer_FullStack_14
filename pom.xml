@@ -2,68 +2,389 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<!--parent-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+	<!--for project information-->
 	<groupId>com.hamitmizrak</groupId>
 	<artifactId>Full_Stack_Developer_tech5</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Full_Stack_Developer_tech5</name>
 	<description>Spring Boot &amp; React JS</description>
+
+	<!--
+	  war: java EE için kullanalım. JSP,servlet,html,css3
+	  jar: Spring Boot için kullanalım
+   -->
+	<!--apache tomcat manuel için war ekliyorum-->
+	<!--<packaging>war</packaging>-->
+	<packaging>jar</packaging>
+
+	<!--properties-->
 	<properties>
+		<encoding>UTF-8</encoding>
 		<java.version>21</java.version>
+
+		<!--for maven-->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+
+		<!--Version-->
+		<modelmapper.version>2.4.4</modelmapper.version>
+		<swagger.version>2.0.0</swagger.version>
+		<gson.version>2.8.6</gson.version>
+		<!--  <swagger.fox.version>3.0.0</swagger.fox.version>-->
 	</properties>
+
+	<!-- start dependencies-->
 	<dependencies>
+
+		<!-- SonarQube-->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.10</version>
 		</dependency>
+
+		<!-- #### ÖNEMLİ KÜTÜPHANLER #################################################  -->
+		<!-- E MAİL-->
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>-->
+
+		<!--lombok-->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
+
+		<!--Validation-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+
+		<!-- model mapper -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>${modelmapper.version}</version>
+		</dependency>
+
+		<!-- JSON işlemleri için gson-->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+
+		<!--devtools:otomatik compiler icin-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!--application.properties ==> application.yml-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- jackson: JSON donusturmelerinde XML -->
+		<!--
+          <dependency>
+             <groupId>com.fasterxml.jackson.dataformat</groupId>
+             <artifactId>jackson-dataformat-xml</artifactId>
+         </dependency>
+         -->
+
+		<!-- web jar Bootstrap-->
+		<!--
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7-1</version>
+        </dependency>
+        -->
+
+		<!-- web jar jquery-->
+		<!--
+        <dependency>
+             <groupId>org.webjars</groupId>
+             <artifactId>jquery</artifactId>
+             <version>3.3.1-1</version>
+         </dependency>
+         -->
+
+		<!-- #### DEPLOYMENT #################################################  -->
+		<!--for apache Tomcat-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!--apache Tomcat-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- #### MVC / API #################################################  -->
+		<!--Spring Web Mvc Rest-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 		</dependency>
+
+		<!--Templates thymeleaf-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<!-- swagger open-api-3.0-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+
+		<!-- swagger open-api-3.0-->
+		<!--unutma ==> @SpringBootApplication @EnableSwagger2 eklemek gerekiyor-->
+		<!--
+            <dependency>
+                 <groupId>org.springdoc</groupId>
+                 <artifactId>springdoc-openapi-ui</artifactId>
+                 <version>1.6.5</version>
+             </dependency>
+         -->
+
+		<!-- swagger springfox-->
+		<!--
+            <dependency>
+                 <groupId>io.springfox</groupId>
+                 <artifactId>springfox-boot-starter</artifactId>
+                 <version>${swagger.version}</version>
+             </dependency>
+         -->
+
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
+		<!--
+            <dependency>
+                  <groupId>io.springfox</groupId>
+                  <artifactId>springfox-boot-starter</artifactId>
+                  <version>${swagger.fox.version}</version>
+              </dependency>
+          -->
+
+		<!-- #### AUTHENTICATION / AUTHORIZATION #################################################  -->
+		<!--  json web token JWT-->
+		<!--
+            <dependency>
+                 <groupId>io.jsonwebtoken</groupId>
+                 <artifactId>jjwt</artifactId>
+                 <version>0.9.1</version>
+             </dependency>
+         -->
+
+		<!-- #### DATABASE #################################################  -->
+		<!-- Spring data-jpa-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!--Cache-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+
+		<!-- JDBC Template-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<!--RDBMS Database-->
+		<!--h2DB-->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!--Mysql-->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.28</version>
+		</dependency>
+
+		<!--postgresql-->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!--Mongo DB Kalıcı veri-->
+		<!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>-->
+
+		<!--Mongo DB Embedded Test icin -->
+		<!--<dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <scope>test</scope>
+        </dependency>-->
+
+		<!-- #### SECURITY #################################################  -->
+		<!--security-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
 		</dependency>
+
+		<!--aop-->
+		<!-- <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-aop</artifactId>
+         </dependency>-->
+
+		<!--SHA dependecy-->
+		<!--<dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>-->
+
+		<!-- #### DEVOPS #################################################  -->
+		<!-- Prometheus -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!--actuator-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- Docker Compose -->
+		<!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-docker-compose</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>-->
+
+		<!--redis-->
+		<!--  <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-data-redis</artifactId>
+              <version>2.7.0</version>
+          </dependency>
+          <dependency>
+              <groupId>redis.clients</groupId>
+              <artifactId>jedis</artifactId>
+          </dependency>-->
+
+		<!--grapQL: Dikkat: graphql ve graphiql aynı sürüm olmalıdır.-->
+		<!--   <dependency>
+               <groupId>com.graphql-java</groupId>
+               <artifactId>graphql-spring-boot-starter</artifactId>
+               <version>5.0.2</version>
+           </dependency>
+
+           <dependency>
+               <groupId>com.graphql-java</groupId>
+               <artifactId>graphql-java-tools</artifactId>
+               <version>5.2.4</version>
+           </dependency>-->
+
+		<!--  Prometheus: Prometheus için gerekli olacak -->
+		<!-- Prometheus:System %of Memoryconsumption ,of CPU consumption -->
+		<!--  <dependency>
+              <groupId>io.micrometer</groupId>
+              <artifactId>micrometer-registry-prometheus</artifactId>
+              <scope>runtime</scope>
+          </dependency>-->
+
+		<!-- #### TEST #################################################  -->
+		<!--TEST-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<!--end dependencies-->
 
+	<!--build-->
 	<build>
+		<!--manuel deployment için-->
+		<defaultGoal>spring-boot:run</defaultGoal>
+		<finalName>${project.artifactId}</finalName>
+
 		<plugins>
+			<!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+
+            &lt;!&ndash; for maven target 21 &ndash;&gt;
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>-->
+
+			<!--Sonarqube Scanner-->
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.3.0.603</version>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -78,5 +399,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
