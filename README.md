@@ -8,6 +8,14 @@
 ![README PNG](./image/readme.png)
 
 ---
+
+```sh
+Git Clone 
+
+git clone https://github.com/hamitmizrak/TechCareer_FullStack_14
+```
+
+
 ## Blog Project:
 Spring Boot And React JS
 
