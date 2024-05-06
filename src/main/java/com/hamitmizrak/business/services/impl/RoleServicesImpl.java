@@ -7,7 +7,6 @@ import com.hamitmizrak.data.entity.RoleEntity;
 import com.hamitmizrak.data.repository.IRoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,6 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
     @Autowired
     private IRoleRepository iRoleRepository;
     */
-
 
     // Injection IRoleRepository (2.YOL => Constructor Injection)
     /*
