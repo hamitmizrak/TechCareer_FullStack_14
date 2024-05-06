@@ -4,13 +4,11 @@ import com.hamitmizrak.business.dto.RoleDto;
 import com.hamitmizrak.business.services.IRoleService;
 import com.hamitmizrak.controller.api.IRoleApi;
 import com.hamitmizrak.error.ApiResult;
-import com.hamitmizrak.utils.ProjectUrl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 import java.util.List;
 
