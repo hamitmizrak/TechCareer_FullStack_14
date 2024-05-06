@@ -5,6 +5,8 @@ import com.hamitmizrak.business.dto.RoleDto;
 import com.hamitmizrak.business.services.IRoleService;
 import com.hamitmizrak.data.entity.RoleEntity;
 import com.hamitmizrak.data.repository.IRoleRepository;
+import com.hamitmizrak.exception.HamitMizrakException;
+import com.hamitmizrak.exception.Resource404NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // Lombok
 @RequiredArgsConstructor
@@ -89,12 +92,31 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
             roleDtoList.add(roleDto1);
         }
         return roleDtoList;
-    }
+    }  //end List
 
     // Find
     @Override
     public RoleDto roleServiceFindById(Long id) {
-        return null;
+        // 1.YOL
+        /*
+        Optional<RoleEntity> optionalRoleEntityFindById= iRoleRepository.findById(id);
+        // isPresent: Entity varsa
+        if(optionalRoleEntityFindById.isPresent()){
+            return entityToDto(optionalRoleEntityFindById.get());
+        }
+        */
+
+        // 2.YOL
+       Boolean booleanRoleEntityFindById = iRoleRepository.findById(id).isPresent();
+       RoleEntity roleEntity=null;
+       if(id!=null){
+           roleEntity=iRoleRepository.findById(id).orElseThrow(
+                   ()->new Resource404NotFoundException(id+" nolu ID Bulunamadı")
+           );
+       } else if(id==null){
+           throw new HamitMizrakException("Roles Dto id boş değer geldi");
+       }
+        return entityToDto(roleEntity);
     }
 
     // Update
