@@ -1,5 +1,6 @@
 package com.hamitmizrak.business.services.impl;
 
+import com.hamitmizrak.bean.ModelMapperBeanClass;
 import com.hamitmizrak.business.dto.RoleDto;
 import com.hamitmizrak.business.services.IRoleService;
 import com.hamitmizrak.data.entity.RoleEntity;
@@ -38,19 +39,22 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
 
     // 3. YOL (Lombok => Constructor Injection)
     private final IRoleRepository iRoleRepository;
-    private final ModelMapper modelMapper;
+
+    // 1.YOL (ModelMapper)
+    // private final ModelMapper modelMapper;
+    private final ModelMapperBeanClass modelMapperBeanClass;
 
     ///////////////////////////////////////////////////////////////////////////////////////
     //**** Model Mapper *****************************************************************//
     // Model Mapper
     @Override
     public RoleDto entityToDto(RoleEntity roleEntity) {
-        return modelMapper.map(roleEntity,RoleDto.class);
+        return modelMapperBeanClass.modelMapperMethod().map(roleEntity,RoleDto.class);
     }
 
     @Override
     public RoleEntity dtoToEntity(RoleDto roleDto) {
-        return modelMapper.map(roleDto, RoleEntity.class);
+        return modelMapperBeanClass.modelMapperMethod().map(roleDto, RoleEntity.class);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -58,8 +62,17 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
     // Create
     @Override
     public RoleDto roleServiceCreate(RoleDto roleDto) {
-        return null;
-    }
+        RoleEntity roleEntity1;
+        // Dto => Entity çevirmek
+        roleEntity1=dtoToEntity(roleDto);
+        roleEntity1.setRoleName(roleEntity1.getRoleName().toUpperCase());
+        // Kaydetmek
+        RoleEntity roleEntity2=iRoleRepository.save(roleEntity1);
+        // ID ve Date Dto üzerinde Set yapıyorum
+        roleDto.setRoleId(roleEntity2.getRoleId());
+        roleDto.setSystemCreatedDate(roleEntity2.getSystemCreatedDate());
+        return roleDto;
+    } //end Create
 
     // List
     @Override
