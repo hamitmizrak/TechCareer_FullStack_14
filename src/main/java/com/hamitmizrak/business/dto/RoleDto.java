@@ -1,6 +1,7 @@
 package com.hamitmizrak.business.dto;
 
 import com.hamitmizrak.annotation.AnnotationUniqueRoleName;
+import com.hamitmizrak.audit.AuditingAwareBaseDto;
 import com.hamitmizrak.role.ERole;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
@@ -15,9 +16,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Log4j2
 @Builder
-//@SneakyThrows
-// RoleDto
-public class RoleDto implements Serializable {
+// @SneakyThrows
+// RoleDto(M) RegisterDto(N)
+public class RoleDto extends AuditingAwareBaseDto implements Serializable {
 
     // SERILESTIRME
     public static final Long serialVersionUID=1L;

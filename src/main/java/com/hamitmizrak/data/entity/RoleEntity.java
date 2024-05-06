@@ -1,5 +1,6 @@
 package com.hamitmizrak.data.entity;
 
+import com.hamitmizrak.audit.AuditingAwareBaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +25,7 @@ import java.util.Date;
 @Entity(name = "Roles")
 @Table(name="roles")
 // Role(M) Register(N)
-public class RoleEntity  implements Serializable {
+public class RoleEntity  extends AuditingAwareBaseEntity implements Serializable {
 
     // SERILESTIRME
     public static final Long serialVersionUID=1L;
