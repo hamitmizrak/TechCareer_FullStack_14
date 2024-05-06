@@ -77,7 +77,7 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
 
     // LIST (ROLE)
     @Override
-    public List<RoleDto> roleServiceList(RoleDto roleDto) {
+    public List<RoleDto> roleServiceList() {
         //Entity List
         List<RoleEntity> roleEntityList1 = iRoleRepository.findAll();
 

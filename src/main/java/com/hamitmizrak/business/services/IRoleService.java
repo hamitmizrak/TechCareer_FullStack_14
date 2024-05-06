@@ -13,18 +13,18 @@ import java.util.List;
     ////////////////////////////////////////////
     // ROLE CRUD
 
-    // Role Create
+    // CREATE Role(Service)
     public D roleServiceCreate(D d);
 
-    // Role List
-    public List<D> roleServiceList(D d);
+    // LIST Role(Service)
+    public List<D> roleServiceList();
 
-    // Role Find ID
+    // FIND BY-ID Role(Service)
     public D roleServiceFindById(Long id);
 
-    // Role Update ID, Object
+    // UPDATE Role(Service)
     public D roleServiceUpdateById(Long id, D d);
 
-    // Role Delete ID
+    // DELETE Role(Service)
     public D roleServiceDeleteById(Long id);
 }// end IRoleService
