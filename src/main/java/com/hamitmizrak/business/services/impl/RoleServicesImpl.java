@@ -55,27 +55,31 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
 
     ///////////////////////////////////////////////////////////////////////////////////////
     //**** CRUD*****************************************************************//
-    //
+    // Create
     @Override
     public RoleDto roleServiceCreate(RoleDto roleDto) {
         return null;
     }
 
+    // List
     @Override
     public List<RoleDto> roleServiceList(RoleDto roleDto) {
         return null;
     }
 
+    // Find
     @Override
     public RoleDto roleServiceFindById(Long id) {
         return null;
     }
 
+    // Update
     @Override
     public RoleDto roleServiceUpdateById(Long id, RoleDto roleDto) {
         return null;
     }
 
+    // Delete
     @Override
     public RoleDto roleServiceDeleteById(Long id) {
         return null;
