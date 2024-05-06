@@ -18,3 +18,5 @@ public interface IRoleRepository extends JpaRepository<RoleEntity,Long> {
     Optional<RoleEntity> findByRoleName(String roleName);
 
 } //end interface
+
+// Java Annotation nedir
