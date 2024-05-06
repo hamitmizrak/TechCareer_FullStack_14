@@ -4,10 +4,11 @@ import java.util.List;
 
 // D: Dto
 // E: Entity
-    public interface IRoleService<D,E> {
+public interface IRoleService<D, E> {
 
     // MODEL MAPPER
     public D entityToDto(E e);
+
     public E dtoToEntity(D d);
 
     ////////////////////////////////////////////
