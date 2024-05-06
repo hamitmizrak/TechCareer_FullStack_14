@@ -17,6 +17,9 @@ import java.util.Date;
 // RoleDto
 public class RoleDto implements Serializable {
 
+    // SERILESTIRME
+    public static final Long serialVersionUID=1L;
+
     // Role ID
     private Long roleId;
 
