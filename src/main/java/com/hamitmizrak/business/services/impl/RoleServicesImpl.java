@@ -11,10 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 // Lombok
 @RequiredArgsConstructor
@@ -52,7 +50,7 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
     // Model Mapper
     @Override
     public RoleDto entityToDto(RoleEntity roleEntity) {
-        return modelMapperBeanClass.modelMapperMethod().map(roleEntity,RoleDto.class);
+        return modelMapperBeanClass.modelMapperMethod().map(roleEntity, RoleDto.class);
     }
 
     @Override
@@ -62,39 +60,39 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
 
     ///////////////////////////////////////////////////////////////////////////////////////
     //**** CRUD*****************************************************************//
-    // Create
+    // CREATE (ROLE)
     @Override
     public RoleDto roleServiceCreate(RoleDto roleDto) {
         RoleEntity roleEntity1;
         // Dto => Entity çevirmek
-        roleEntity1=dtoToEntity(roleDto);
+        roleEntity1 = dtoToEntity(roleDto);
         roleEntity1.setRoleName(roleEntity1.getRoleName().toUpperCase());
         // Kaydetmek
-        RoleEntity roleEntity2=iRoleRepository.save(roleEntity1);
+        RoleEntity roleEntity2 = iRoleRepository.save(roleEntity1);
         // ID ve Date Dto üzerinde Set yapıyorum
         roleDto.setRoleId(roleEntity2.getRoleId());
         roleDto.setSystemCreatedDate(roleEntity2.getSystemCreatedDate());
         return roleDto;
     } //end Create
 
-    // List
+    // LIST (ROLE)
     @Override
     public List<RoleDto> roleServiceList(RoleDto roleDto) {
         //Entity List
-        List<RoleEntity> roleEntityList1=iRoleRepository.findAll();
+        List<RoleEntity> roleEntityList1 = iRoleRepository.findAll();
 
         // Dto List
-        List<RoleDto> roleDtoList=new ArrayList<>();
+        List<RoleDto> roleDtoList = new ArrayList<>();
 
         // Entity To Dto List
-        for(RoleEntity tempEntity:roleEntityList1){
-            RoleDto roleDto1=entityToDto(tempEntity);
+        for (RoleEntity tempEntity : roleEntityList1) {
+            RoleDto roleDto1 = entityToDto(tempEntity);
             roleDtoList.add(roleDto1);
         }
         return roleDtoList;
     }  //end List
 
-    // Find
+    // FIND (ROLE)
     @Override
     public RoleDto roleServiceFindById(Long id) {
         // 1.YOL
@@ -107,28 +105,51 @@ public class RoleServicesImpl implements IRoleService<RoleDto, RoleEntity> {
         */
 
         // 2.YOL
-       Boolean booleanRoleEntityFindById = iRoleRepository.findById(id).isPresent();
-       RoleEntity roleEntity=null;
-       if(id!=null){
-           roleEntity=iRoleRepository.findById(id).orElseThrow(
-                   ()->new Resource404NotFoundException(id+" nolu ID Bulunamadı")
-           );
-       } else if(id==null){
-           throw new HamitMizrakException("Roles Dto id boş değer geldi");
-       }
+        Boolean booleanRoleEntityFindById = iRoleRepository.findById(id).isPresent();
+        RoleEntity roleEntity = null;
+        //if(id!=null){
+        if (booleanRoleEntityFindById) {
+            roleEntity = iRoleRepository.findById(id).orElseThrow(
+                    () -> new Resource404NotFoundException(id + " nolu ID Bulunamadı")
+            );
+        } else if (!booleanRoleEntityFindById) {
+            throw new HamitMizrakException("Roles Dto id boş değer geldi");
+        }
         return entityToDto(roleEntity);
-    }
+    }  //end Find
 
-    // Update
+    // UPDATE (ROLE)
     @Override
     public RoleDto roleServiceUpdateById(Long id, RoleDto roleDto) {
-        return null;
+        // Find
+        RoleDto roleDtoFind = roleServiceFindById(id);
+
+        // Update
+        RoleEntity roleUpdateEntity = dtoToEntity(roleDtoFind);
+        if (roleUpdateEntity != null) {
+            roleUpdateEntity.setRoleName(roleDto.getRoleName());
+            iRoleRepository.save(roleUpdateEntity);
+        }
+        // ID ve Date Dto üzerinde Set yapıyorum
+        roleDto.setRoleId(roleUpdateEntity.getRoleId());
+        roleDto.setSystemCreatedDate(roleUpdateEntity.getSystemCreatedDate());
+        return entityToDto(roleUpdateEntity);
     }
 
-    // Delete
+    // DELETE (ROLE)
     @Override
     public RoleDto roleServiceDeleteById(Long id) {
-        return null;
+        // Find
+        RoleDto roleDtoFind = roleServiceFindById(id);
+
+        RoleEntity roleDeleteEntity = dtoToEntity(roleDtoFind);
+        if (roleDeleteEntity != null) {
+            iRoleRepository.deleteById(id);
+            return roleDtoFind;
+        }else {
+            throw new HamitMizrakException(roleDtoFind+ "nolu data silinemedi");
+        }
+        // return null;
     }
 
 } //end RoleServicesImpl
