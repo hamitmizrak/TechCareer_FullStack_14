@@ -71,21 +71,58 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
     }
 
     //FIND Role(Api)
+    // http://localhost:4444/role/api/v1.0.0/find
+    // http://localhost:4444/role/api/v1.0.0/find/0
+    // http://localhost:4444/role/api/v1.0.0/find/1
     @Override
-    public ResponseEntity<?> roleServiceFindById(Long id) {
-        return null;
+    @GetMapping({"/find","/find/{id}"})
+    public ResponseEntity<?> roleServiceFindById(@PathVariable(name="id",required = false)  Long id) {
+       RoleDto roleFindApi=( RoleDto)iRoleService.roleServiceFindById(id);
+       if(roleFindApi==null){
+           // Eğer kaydederken null değer gelirse
+               ApiResult apiResultFind=ApiResult.builder()
+                       .status(404)
+                       .error("Role Bulunamadı")
+                       .message("Role Dto bulunmadı")
+                       .path("localhost:4444/role/api/v1.0.0/find")
+                       .createdDate(new Date(System.currentTimeMillis()))
+                       .build();
+               return ResponseEntity.status(404).body(apiResultFind);
+       }
+        return ResponseEntity.ok(iRoleService.roleServiceFindById(id));
     }
 
     // UPDATE Role(Api)
+    // http://localhost:4444/role/api/v1.0.0/update
+    // http://localhost:4444/role/api/v1.0.0/update/0
+    // http://localhost:4444/role/api/v1.0.0/update/1
     @Override
-    public ResponseEntity<?> roleServiceUpdateById(Long id, @Valid @RequestBody RoleDto roleDto) {
-        return null;
+    @PutMapping({"/update","/update/{id}"})
+    public ResponseEntity<?> roleServiceUpdateById(@PathVariable(name="id",required = false) Long id, @Valid @RequestBody RoleDto roleDto) {
+        RoleDto roleUpdateApi=( RoleDto)iRoleService.roleServiceUpdateById(id,roleDto);
+        if(roleUpdateApi==null){
+            // Eğer kaydederken null değer gelirse
+            ApiResult apiResultFind=ApiResult.builder()
+                    .status(404)
+                    .error("Role Bulunamadı")
+                    .message("Role Dto bulunmadı")
+                    .path("localhost:4444/role/api/v1.0.0/update")
+                    .createdDate(new Date(System.currentTimeMillis()))
+                    .build();
+            return ResponseEntity.status(404).body(apiResultFind);
+        }
+        return ResponseEntity.ok(iRoleService.roleServiceUpdateById(id,roleDto));
     }
 
     // DELETE Role(Api)
+    // http://localhost:4444/role/api/v1.0.0/delete
+    // http://localhost:4444/role/api/v1.0.0/delete/0
+    // http://localhost:4444/role/api/v1.0.0/delete/1
     @Override
-    public ResponseEntity<?> roleServiceDeleteById(Long id) {
-        return null;
+    @DeleteMapping({"/delete","/delete/{id}"})
+    public ResponseEntity<?> roleServiceDeleteById(@PathVariable(name="id",required = false) Long id) {
+        RoleDto roleDto=(RoleDto)iRoleService.roleServiceDeleteById(id);
+        return ResponseEntity.ok(iRoleService.roleServiceDeleteById(id));
     }
 
 }// end RoleApiImpl
