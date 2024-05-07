@@ -1,6 +1,6 @@
 package com.hamitmizrak.annotation;
 
-import com.hamitmizrak.fullstackdeveloper12.data.repository.IRegisterRepository;
+import com.hamitmizrak.data.repository.IRegisterRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
