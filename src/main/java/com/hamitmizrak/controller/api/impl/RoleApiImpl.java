@@ -127,7 +127,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
     public ResponseEntity<?> roleServiceDeleteById(@PathVariable(name="id",required = false) Long id) {
         RoleDto roleDto=(RoleDto)iRoleService.roleServiceDeleteById(id);
         log.info("Role Api Silindi");
-        return ResponseEntity.ok(iRoleService.roleServiceDeleteById(id));
+        return ResponseEntity.ok(roleDto);
     }
 
 }// end RoleApiImpl
