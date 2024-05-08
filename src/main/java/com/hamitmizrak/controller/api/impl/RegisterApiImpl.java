@@ -51,7 +51,6 @@ public class RegisterApiImpl implements IRegisterApi<RegisterDto> {
     /////////////////////////////////////////////////////////////
     // REGISTER CRUD
 
-
     // CREATE Register(Api)
     // http://localhost:4444/register/api/v1.0.0/create/1
     @Override
