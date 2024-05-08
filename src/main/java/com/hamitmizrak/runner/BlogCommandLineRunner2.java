@@ -51,7 +51,9 @@ public class BlogCommandLineRunner2 implements CommandLineRunner{
                 registerDto.setRegisterNickName("nickname"+i);
                 registerDto.setRegisterName("name"+i);
                 registerDto.setRegisterSurname("surname"+i);
-                registerDto.setRegisterEmail("email@gmail.com"+i);
+                StringBuilder stringBuilder=new StringBuilder();
+                stringBuilder.append("email").append("@gmail.com");
+                registerDto.setRegisterEmail(stringBuilder.toString());
                 registerDto.setRegisterPassword("Java12345@.");
 
                 // USER DETAILS

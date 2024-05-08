@@ -25,8 +25,8 @@ public class UniqueEmailAddressValidation implements ConstraintValidator<Annotat
         Boolean isEmailAddress=iRegisterRepository.findByRegisterEmail(emailAddress).isPresent();
         //Eğer email address sistemde varsa
         if(isEmailAddress){
-            return true;
+            return false;
         }
-        return false; //email sistemde yoksa
+        return true; //email sistemde yoksa
     } //end isValid
 } //end class
