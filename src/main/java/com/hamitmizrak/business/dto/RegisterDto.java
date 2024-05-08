@@ -25,6 +25,7 @@ import java.util.Date;
 // @SneakyThrows
 // RoleDto(M) RegisterDto(N)
 
+// REGISTER
 public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
 
     // Serilestirme
@@ -36,9 +37,10 @@ public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
     // System Created Date
     private Date systemCreatedDate;
 
+    /////////////////////////////////////////////////////////////////////////////////
     // Nickname
     @NotEmpty(message = "{register.nickname.validation.constraints.NotNull.message}")
-    private String nickName;
+    private String registerNickName;
 
     // Name
     @NotEmpty(message = "{register.name.validation.constraints.NotNull.message}")
@@ -46,19 +48,19 @@ public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
 
     // Surname
     @NotEmpty(message = "{register.surname.validation.constraints.NotNull.message}")
-    private String surname;
+    private String registerSurname;
 
     // Email
     @NotEmpty(message = "{register.email.validation.constraints.NotNull.message}")
     @Email(message = "{register.email.validation.constraints.regex.message}")
     @AnnotationUniqueEmailAddress
-    private String email;
+    private String registerEmail;
 
     // Password
     @NotEmpty(message = "{register.password.validation.constraints.NotNull.message}")
     @Size(min = 7,max=15,  message = "{register.password.validation.constraints.MinMax.NotNull.message }")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).*$", message = "{register.password.pattern.validation.constraints.NotNull.message}")
-    private String password;
+    private String registerPassword;
 
     // Page Authorization (O kişi o sayfaya yetkisi var mı
     @Builder.Default
@@ -67,7 +69,7 @@ public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
     // Rolles (Enum)
     private Collection<RoleDto> roles;
 
-    /////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////
     // USER DETAILS
     // Kullanıcı üye olurken kilitli olsun ancak mail onayı ile aktifleştirilsin
     public Boolean isAccountNonLocked;
