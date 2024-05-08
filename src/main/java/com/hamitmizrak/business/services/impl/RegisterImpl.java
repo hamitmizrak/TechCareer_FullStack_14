@@ -55,12 +55,37 @@ public class RegisterImpl implements IRegisterServices<RegisterDto, RegisterEnti
     //**** Speed Data And User All Delete ****************************************************//
     // Speed Data
     @Override
+    @Transactional// Create,Update,Delete
     public String registerSpeedData(Long data) {
+        // Eğer data boş değilse Ekleme yapsın
+        if(data!=null){
+            RegisterDto registerDto=new RegisterDto();
+            registerDto.setRegisterNickName("nickname");
+            registerDto.setRegisterName("name");
+            registerDto.setRegisterSurname("surname");
+            registerDto.setRegisterPassword(passwordEncoderBeanClass.passwordEncoderMethod().encode("1234"));
+            registerDto.setRegisterEmail("hamitmizrak@gmail.com");
+            registerDto.setIsAccountNonLocked(false); //mail ile aktifleşitreceğim.
+            registerDto.setIsEnabled(true);
+            registerDto.setIsAccountNonExpired(true);
+            registerDto.setIsCredentialsNonExpired(true);
+
+            // Model Mapper
+
+            RegisterEntity registerEntity=dtoToEntity(registerDto);
+            iRegisterRepository.save(registerEntity);
+
+            // ID ve Date Dto üzerinde Set yapıyorum
+            registerDto.setRegisterId(registerEntity.getRegisterId());
+            registerDto.setSystemCreatedDate(registerEntity.getSystemCreatedDate());
+            return data+" tane veri eklendi\nEklenen Veri"+registerDto;
+        }
         return null;
     }
 
     // User All Delete
     @Override
+    @Transactional// Create,Update,Delete
     public String registerAllUSerDelete() {
         iRegisterRepository.deleteAll();
         String information=registerServiceList().size()+" tane veri silindi";

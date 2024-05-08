@@ -10,18 +10,18 @@ public interface IRoleApi<D> {
 
     // ROLE CRUD
     // Role Create
-    public ResponseEntity<?> roleServiceCreate(D d);
+    public ResponseEntity<?> roleApiCreate(D d);
 
     // Role List
-    public ResponseEntity<List<D>> roleServiceList();
+    public ResponseEntity<List<D>> roleApiList();
 
     // Role Find ID
-    public ResponseEntity<?> roleServiceFindById(Long id);
+    public ResponseEntity<?> roleApiFindById(Long id);
 
     // Role Update ID, Object
-    public ResponseEntity<?> roleServiceUpdateById(Long id, D d);
+    public ResponseEntity<?> roleApiUpdateById(Long id, D d);
 
     // Role Delete ID
-    public ResponseEntity<?> roleServiceDeleteById(Long id);
+    public ResponseEntity<?> roleApiDeleteById(Long id);
 
 } //end api interface

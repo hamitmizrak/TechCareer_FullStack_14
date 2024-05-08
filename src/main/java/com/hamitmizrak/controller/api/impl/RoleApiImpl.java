@@ -35,7 +35,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
     // http://localhost:4444/role/api/v1.0.0/create
     @PostMapping("/create")
     @Override
-    public ResponseEntity<?> roleServiceCreate(@Valid @RequestBody RoleDto roleDtoData) {
+    public ResponseEntity<?> roleApiCreate(@Valid @RequestBody RoleDto roleDtoData) {
         RoleDto roleCreateApi=(RoleDto)iRoleService.roleServiceCreate(roleDtoData);
 
         // Eğer kaydederken null değer gelirse
@@ -67,7 +67,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
     // http://localhost:4444/role/api/v1.0.0/list
     @GetMapping("/list")
     @Override
-    public ResponseEntity<List<RoleDto>> roleServiceList() {
+    public ResponseEntity<List<RoleDto>> roleApiList() {
         log.info("Role Api Listelendi");
         return ResponseEntity.ok(iRoleService.roleServiceList());
     }
@@ -78,7 +78,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
     // http://localhost:4444/role/api/v1.0.0/find/1
     @Override
     @GetMapping({"/find","/find/{id}"})
-    public ResponseEntity<?> roleServiceFindById(@PathVariable(name="id",required = false)  Long id) {
+    public ResponseEntity<?> roleApiFindById(@PathVariable(name="id",required = false)  Long id) {
        RoleDto roleFindApi=( RoleDto)iRoleService.roleServiceFindById(id);
        if(roleFindApi==null){
            // Eğer kaydederken null değer gelirse
@@ -101,7 +101,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
     // http://localhost:4444/role/api/v1.0.0/update/1
     @Override
     @PutMapping({"/update","/update/{id}"})
-    public ResponseEntity<?> roleServiceUpdateById(@PathVariable(name="id",required = false) Long id, @Valid @RequestBody RoleDto roleDto) {
+    public ResponseEntity<?> roleApiUpdateById(@PathVariable(name="id",required = false) Long id, @Valid @RequestBody RoleDto roleDto) {
         RoleDto roleUpdateApi=( RoleDto)iRoleService.roleServiceUpdateById(id,roleDto);
         if(roleUpdateApi==null){
             // Eğer kaydederken null değer gelirse
@@ -124,7 +124,7 @@ public class RoleApiImpl implements IRoleApi<RoleDto> {
     // http://localhost:4444/role/api/v1.0.0/delete/1
     @Override
     @DeleteMapping({"/delete","/delete/{id}"})
-    public ResponseEntity<?> roleServiceDeleteById(@PathVariable(name="id",required = false) Long id) {
+    public ResponseEntity<?> roleApiDeleteById(@PathVariable(name="id",required = false) Long id) {
         RoleDto roleDto=(RoleDto)iRoleService.roleServiceDeleteById(id);
         log.info("Role Api Silindi");
         return ResponseEntity.ok(roleDto);
