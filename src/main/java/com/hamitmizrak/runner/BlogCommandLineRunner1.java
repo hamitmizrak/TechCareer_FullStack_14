@@ -16,6 +16,12 @@ import org.springframework.context.annotation.Configuration;
 public class BlogCommandLineRunner1 {
 
     // Injection
+    /*
+    rol ekle
+    register
+    email
+
+    * */
 
     @Bean
     public CommandLineRunner blogRunner(){
