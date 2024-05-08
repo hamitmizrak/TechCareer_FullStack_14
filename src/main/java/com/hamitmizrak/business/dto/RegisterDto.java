@@ -25,6 +25,9 @@ import java.util.Date;
 // @SneakyThrows
 // RoleDto(M) RegisterDto(N)
 
+// NOT: Validation işlemlerinde DTO tarafında yazalım.
+// NOT: Eğer kullanıcı boşluk bıraktıysa trim() metotudunu kullanın
+
 // REGISTER
 public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
 
@@ -44,7 +47,7 @@ public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
 
     // Name
     @NotEmpty(message = "{register.name.validation.constraints.NotNull.message}")
-    private String name;
+    private String registerName;
 
     // Surname
     @NotEmpty(message = "{register.surname.validation.constraints.NotNull.message}")
@@ -53,7 +56,7 @@ public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
     // Email
     @NotEmpty(message = "{register.email.validation.constraints.NotNull.message}")
     @Email(message = "{register.email.validation.constraints.regex.message}")
-    @AnnotationUniqueEmailAddress
+    @AnnotationUniqueEmailAddress // have to unique email address
     private String registerEmail;
 
     // Password
@@ -83,4 +86,9 @@ public class RegisterDto extends AuditingAwareBaseDto implements Serializable {
     // Kullanıcı Sistemde mi ?
     public Boolean isEnabled;
 
-} //end Register
+    /////////////////////////////////////////////////////////////////////////////////
+    // PARAMETRESIZ CONSTRUCTOR
+    // PARAMETRELI CONSTRUCTOR
+    // TOSTRING
+
+} //end RegisterDto
