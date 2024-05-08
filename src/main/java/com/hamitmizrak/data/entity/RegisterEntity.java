@@ -47,15 +47,15 @@ public class RegisterEntity extends AuditingAwareBaseEntity implements Serializa
 
     // Nickname
     @Column(name = "nick_name")
-    private String nickName;
+    private String registerNickName;
 
     // Name
     @Column(name = "name")
-    private String name;
+    private String registerName;
 
     // Surname
     @Column(name = "surname")
-    private String surname;
+    private String registerSurname;
 
     // Email
     @Column(
@@ -69,7 +69,7 @@ public class RegisterEntity extends AuditingAwareBaseEntity implements Serializa
 
     // Password
     @Column(name = "password")
-    private String password;
+    private String registerPassword;
 
     // Page Authorization (O kişi o sayfaya yetkisi var mı
     @Column(name = "page_authorization")
