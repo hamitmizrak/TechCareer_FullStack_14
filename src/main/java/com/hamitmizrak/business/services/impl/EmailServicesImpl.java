@@ -5,8 +5,10 @@ import com.hamitmizrak.bean.PasswordEncoderBeanClass;
 import com.hamitmizrak.business.dto.EmailDto;
 import com.hamitmizrak.business.services.IEmailServices;
 import com.hamitmizrak.data.entity.EmailEntity;
+import com.hamitmizrak.data.repository.IEmailRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,10 @@ public class EmailServicesImpl implements IEmailServices<EmailDto, EmailEntity> 
     // Injection
     private final ModelMapperBeanClass modelMapperBeanClass;
     private final PasswordEncoderBeanClass passwordEncoderBeanClass;
+
+    // Injection Email
+    private final IEmailRepository iEmailRepository;
+    private final JavaMailSender javaMailSender;
 
     ///////////////////////////////////////////////////////////////////////////////////////
     //**** Model Mapper *****************************************************************//
