@@ -1,10 +1,12 @@
 package com.hamitmizrak.business.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 
@@ -23,15 +25,20 @@ public class EmailDto extends BaseDto implements Serializable {
     public static final Long serialVersionUID=1L;
 
     // Kime
+    @NotEmpty(message = "{email.to.validation.constraints.NotNull.message}")
     private String emailTo;
 
-    // Kimden
+    // Kimden (Gönderen)
+    @NotEmpty(message = "{email.from.validation.constraints.NotNull.message}")
+    @Value("${spring.mail.username}") // application.properties'den gelen veriyi almak
     private String emailFrom;
 
     // Konu
+    @NotEmpty(message = "{email.subject.validation.constraints.NotNull.message}")
     private String emailSubject;
 
     // İçerik
+    @NotEmpty(message = "{email.text.validation.constraints.NotNull.message}")
     private String emailText;
 
     // CC: public
