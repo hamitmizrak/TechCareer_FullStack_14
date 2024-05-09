@@ -30,6 +30,7 @@ public class EmailDto extends BaseDto implements Serializable {
 
     // Kimden (Gönderen)
     @NotEmpty(message = "{email.from.validation.constraints.NotNull.message}")
+    // import org.springframework.beans.factory.annotation.Value;
     @Value("${spring.mail.username}") // application.properties'den gelen veriyi almak
     private String emailFrom;
 
