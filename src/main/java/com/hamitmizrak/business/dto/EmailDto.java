@@ -44,11 +44,11 @@ public class EmailDto extends BaseDto implements Serializable {
 
     // CC: public
     private String emailCc;
-    private String[] emailCcArray;
+    //private String[] emailCcArray;
 
     // BCC: private
     private String emailBcc;
-    private String[] emailBCcArray;
+    //private String[] emailBCcArray;
 
     // Resim
     @Builder.Default
