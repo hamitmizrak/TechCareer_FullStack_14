@@ -29,7 +29,7 @@ import java.util.Set;
 // Service: Asıl İş Yükünü sırtlayan
 @Service
 @Component("registerServicesImpl") // @Component => Spring'in bir parcasısın
-public class RegisterImpl implements IRegisterServices<RegisterDto, RegisterEntity> {
+public class RegisterServicesImpl implements IRegisterServices<RegisterDto, RegisterEntity> {
 
     // Injection
     private final IRoleRepository iRoleRepository;

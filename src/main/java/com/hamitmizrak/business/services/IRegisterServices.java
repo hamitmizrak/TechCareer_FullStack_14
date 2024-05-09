@@ -8,6 +8,9 @@ import java.util.List;
  2- SMS pin code:
 */
 
+// D: Dto
+// E: Entity
+
 // Register(N) Roles(M)
 public interface IRegisterServices<D, E> {
 
