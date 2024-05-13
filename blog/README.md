@@ -1,116 +1,7 @@
-# Spring Boot & React JS
-![](https://komarev.com/ghpvc/?username=hamitmizrak)
-## _N-Tier Architecture_
+# Script Start
+npm run start
 
-[![N|GitHub](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png)](https://github.com/hamitmizrak/FullStackDeveloper12.git)
-
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/hamitmizrak/TechCareer_FullStack_14.git)
-![README PNG](./image/readme.png)
-
----
-
-```sh
-Git Clone 
-
-git clone https://github.com/hamitmizrak/TechCareer_FullStack_14
-```
-
-*Version*
----
-git -v
-java -version
-node -v
-npm -v
-
-
-
-```sh
-git checkout -b backend
-cat >> backend.txt
-backend
-Ctrl+C
-git add .
-git commit -m "backend"
-git push -u origin backend
-git checkout master 
-
-git branch frontend
-git checkout frontend veya git switch frontend
-cat >> frontend.txt
-frontend
-Ctrl+C
-git add .
-git commit -m "frontend"
-git push -u origin frontend
-git checkout master 
-
-
-```
-
-
-
-## Blog Project:
-Spring Boot And React JS
-
-- Backend: Java Core, Spring Framework
-- Frontend:  React JS, JS, +ES5
-- 🎁 BLOG
---- 
-
-## TECHNOLOGY && Features
-- HTML5
-- CSS3
-- RESPONSIVE DESIGN
-- JS
-- BOOTSTRAP5
-- JQUERY
-- JAVASCRIPT
-- SQL
-- H2DB
-- MYSQL
-- POSTGRESQL
-- JAVA CORE
-- SPRING FRAMEWORK
-- SPRING BOOT
----
-
-## Libraries && Programming
-- Thymeleaf
-- Lombok
-- Validation
-- Mysql
-- Postgresql
-- Model Mapper
-- Password Encoder
-- Open Api Configuration
-- H2DB
-- MYSQL
-- POSTGRESQL
-- JAVA CORE
-- SPRING FRAMEWORK
-- SPRING BOOT
-
----
-
-## REACT INSTALL
-``sh
-npm install -g create-react-app
-npx create-react-app blog
-
-
-npm install axios --save
-npm install react-router-dom --save
-npm install i18next --save
-npm install react-i18next --save
-npm install nodemon --save-dev
-npm install -g nodemon
-
-npm install
-cd blog
-npm start
-```
-
-## Npm Komutları 
+## Npm Komutları
 ```sh
 node -v
 npm  -v
@@ -169,7 +60,7 @@ npm update express
 ## Nodemon
 ```sh
 normalde: node index 
-nodemonla birlite: nodemon index otomatikleştiriyoruz.
+nodemonla birlikte: nodemon index otomatikleştiriyoruz.
 npm install 
 npm search nodemon
 npm install nodemon --save
@@ -178,6 +69,7 @@ npm install nodemon --save
 -q: terminalde az açıklamalar görünsün
 
 npm install -g nodemon --save 
+npm install -g nodemon --save-dev
 nodemon index.js 
 nodemon -q index.js 
 
@@ -189,6 +81,192 @@ nodemon -q index.js
 npm run nodemon
 npm run nodemon_q
 ```
+
+
+---
+### `npm start`
+### `npm test`
+### `npm run build`
+### `npm run eject`
+### `npm run build` fails to minify
+
+## REACT JS INSTALL
+``sh
+npm install -g create-react-app
+npx create-react-app blog
+cd blog
+npm start
+
+#### backend with frontend connectivity
+npm install axios --save
+
+#### for Router
+npm install react-router-dom --save
+
+#### for language
+npm install i18next --save              
+npm install react-i18next --save
+
+#### LocalStorage Bilgileri gizle
+npm install secure-ls --save
+
+#### Redux
+npm install redux react-redux --save
+
+#### middleWare
+npm install redux-thunk
+```
+----------------------------------------------------------------
+## TAILWIND INSTALL
+#### Package.json yoksa ekle, yoksa ekleme
+npm init -y
+
+#### D: Developer
+npm install -D tailwindcss 
+
+####  tailwind.config.js
+npx tailwindcss init 
+```sh 
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: [
+      "./src/**/*.{js,jsx,ts,tsx}",
+    ],
+    theme: {
+
+        container: {
+            center: true
+        },
+
+        extend: {
+            colors: {
+                "hamitmizrak-red": "red",
+                "hamitmizrak-blue": "blue",
+                "hamitmizrak-yellow": "yellow",
+                "hamitmizrak-gray": "#f2f2f2",
+            },
+            fontFamily: {
+                font: ['Montserrat', 'sans-serif'],
+                open: ['Open Sans', 'sans-serif'],
+            }
+        },
+    },
+    plugins: [],
+}
+
+```
+
+
+#### dizin oluştur (src) ancak react zaten var tekrardan kurma
+css eklemek => tailwind_input.css
+npx tailwindcss -i ./src/tailwind_input.css -o ./src/index.css --watch
+npm run watch
+
+## NOT: package.json olduğu dizine bunları ekliyoruz.
+#### for React JS , Tailwind
+npm install -D tailwindcss
+npx tailwindcss init
+
+---
+tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+content: [
+"./src/**/*.{js,jsx,ts,tsx}",
+],
+theme: {
+
+        container: {
+            center: true
+        },
+
+        extend: {
+            colors: {
+                "hamitmizrak-red": "red",
+                "hamitmizrak-blue": "blue",
+                "hamitmizrak-yellow": "yellow",
+                "hamitmizrak-gray": "#f2f2f2",
+            },
+            fontFamily: {
+                font: ['Montserrat', 'sans-serif'],
+                open: ['Open Sans', 'sans-serif'],
+            }
+        },
+    },
+    plugins: [],
+}
+
+
+---
+index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+--- 
+App.js
+export default function App() {
+return (
+<h1 className="text-3xl font-bold underline">
+Hello world!
+</h1>
+)
+}
+
+------------------------------------------------------------------------------
+# Spring Boot & React JS
+![](https://komarev.com/ghpvc/?username=hamitmizrak)
+## _N-Tier Architecture_
+
+[![N|GitHub](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png)](https://github.com/hamitmizrak/FullStackDeveloper12.git)
+
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/hamitmizrak/FullStackDeveloper12.git)
+![README PNG](./image/readme.png)
+
+---
+## Blog Project:
+Spring Boot And React JS
+
+- Backend: Java Core, Spring Framework
+- Frontend:  React JS, JS, +ES5
+- 🎁 BLOG
+--- 
+
+## TECHNOLOGY && Features
+- HTML5
+- CSS3
+- RESPONSIVE DESIGN
+- JS
+- BOOTSTRAP5
+- JQUERY
+- JAVASCRIPT
+- SQL
+- H2DB
+- MYSQL
+- POSTGRESQL
+- JAVA CORE
+- SPRING FRAMEWORK
+- SPRING BOOT
+---
+
+## Libraries && Programming
+- Thymeleaf
+- Lombok
+- Validation
+- Mysql
+- Postgresql
+- Model Mapper
+- Password Encoder
+- Open Api Configuration
+- H2DB
+- MYSQL
+- POSTGRESQL
+- JAVA CORE
+- SPRING FRAMEWORK
+- SPRING BOOT
+
+---
+
 
 
 ---
