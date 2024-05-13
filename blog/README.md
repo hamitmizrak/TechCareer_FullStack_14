@@ -94,6 +94,16 @@ npm run nodemon_q
 ``sh
 npm install -g create-react-app
 npx create-react-app blog
+
+
+npm install axios --save
+npm install react-router-dom --save
+npm install i18next --save
+npm install react-i18next --save
+npm install nodemon --save-dev
+npm install -g nodemon
+
+npm install
 cd blog
 npm start
 
