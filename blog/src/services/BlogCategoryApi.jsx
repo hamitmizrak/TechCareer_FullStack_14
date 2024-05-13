@@ -7,7 +7,7 @@
 import axios from "axios";
 
 // PERSIST
-const BLOG_CATEGORY_API_PERSIST_URL="blog/category/api/v1"
+const BLOG_CATEGORY_API_PERSIST_URL="/blog/category/api/v1"
 
 // BlogCategoryApi
 class BlogCategoryApi{
