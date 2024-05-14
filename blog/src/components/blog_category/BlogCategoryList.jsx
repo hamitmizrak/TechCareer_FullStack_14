@@ -1,8 +1,19 @@
+// React
 import React, { useEffect, useState } from 'react'
+
+// Router
 import { useNavigate } from 'react-router-dom'
+
+// List
 import BlogCategoryApi from '../../services/BlogCategoryApi';
 
-export default function BlogCategoryList({t,i18n,props}) {
+// I18n
+import { withTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom/dist';
+
+
+// Function BlogCategoryList
+function BlogCategoryList({t,i18n,props}) {
 
     // REDIRECT
     let navigate=useNavigate();
@@ -15,6 +26,7 @@ export default function BlogCategoryList({t,i18n,props}) {
         fetchBlogCategoryList()
     },[]);
 
+    // List
     const fetchBlogCategoryList=async()=>{
         try {
             const response= await BlogCategoryApi.categoryApiList();
@@ -25,52 +37,76 @@ export default function BlogCategoryList({t,i18n,props}) {
         }
     }
 
+/////////////////////////////////////////////
+    // Method
+    setUpdateBlogCategory=(data)=>{
+        let {id,categoryName}=data;
+        localStorage.setItem("blog_category_update_id",id);
+        localStorage.setItem("blog_category_update_category_name",categoryName);
+    }
+
+
+    setViewBlogCategory=(id)=>{
+localStorage.setItem("blog_category_view_id",id);
+    }
+
+
+    setDeleteBlogCategory=(id)=>{
+        if(window.confirm("Are you sure you want to delete?")){
+            BlogCategoryApi.categoryApiDelete(id);
+            navigate("/blog/category/list");
+        }
+    }
+
     // RETURN
   return (
     <>
-    <table className="table table-striped table-responsive mb-4">
+    <div className="mt-5">
+<h1 className="text-center h1 mb-5">{t('blog_category_list')}</h1>
+<Link className='btn btn-primary me-2' to="/blog/category/create">{t('create')}</Link>
+    </div>
+     <table className="table table-striped table-responsive mb-4">
         <thead>
             <tr>
-            <th>Id</th>
-            <th>Category Name</th>
-            <th>Date</th>
-            <th>Update</th>
-            <th>View</th>
-            <th>Delete</th>
+                    <th>{t('id')}</th>
+                    <th>{t('blog_category_name')}</th>
+                    <th>{t('date')}</th>
+                    <th>{t('update')}</th>
+                    <th>{t('show')}</th>
+                    <th>{t('delete')}</th>
             </tr>
         </thead>
         <tbody>
-
-{
-    blogCategoriesList.map((data)=>
-    <tr>
-        <td>{data.categoryId}</td>
-        <td>{data.categoryName}</td>
-        <td>{data.systemCreatedDate}</td>
-        <td><button className="btn btn-warning" >Update</button></td>
-                <td><button className="btn btn-info">View</button></td>
-                <td><button className="btn btn-danger">Delete</button></td>
-    </tr>
-    )
-}
-
-
-
-
-
-
-            {/* {getBlogCategoriesList.map((blogCategory)=>
-            <tr key={blogCategory.id}>
-                <td>{blogCategory.id}</td>
-                <td>{blogCategory.name}</td>
-                <td>{blogCategory.created_at}</td>
-                <td><button className="btn btn-warning" onClick={()=>navigate("/blog/category/update/"+blogCategory.id)}>Update</button></td>
-                <td><button className="btn btn-info" onClick={()=>navigate("/blog/category/view/"+blogCategory.id)}>View</button></td>
-                <td><button className="btn btn-danger">Delete</button></td>
-            </tr>
-            )} */}
+            {
+                blogCategoriesList.map((data)=>
+                <tr>
+                    <td>{data.categoryId}</td>
+                    <td>{data.categoryName}</td>
+                    <td>{data.systemCreatedDate}</td>
+                   
+                    <td>
+                                <Link to={`/blog/category/update/${data.categoryId}`}>
+                                    <i onClick={() => setUpdateBlogCategory(data)} className="fa-solid fa-pen-nib text-primary"></i>
+                                </Link>
+                    </td>
+                    <td>
+                                <Link to={`/blog/category/view/${data.categoryId}`}>
+                                    <i onClick={() => setViewBlogCategory(data.categoryId)} className="fa-solid fa-eye text-secondary"></i>
+                                </Link>
+                    </td>
+                    <td>
+                                <Link>
+                                    <i onClick={() => setDeleteBlogCategory(data.categoryId)} className="fa-solid fa-trash text-danger"></i>
+                                </Link>
+                     </td>
+                </tr>
+                )
+            }
         </tbody>
-    </table>
+     </table>
     </>
-  )
-}
+  ) // end return
+} //end function
+
+// i18n
+export default withTranslation()(BlogCategoryList) 

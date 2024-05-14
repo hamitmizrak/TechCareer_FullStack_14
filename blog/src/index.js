@@ -8,6 +8,9 @@ import BlogRouter from './BlogRouter';
 // HashRouter    => http://localjhost:3000/#
 import { BrowserRouter } from 'react-router-dom';
 
+// Dil Seçeneği (Ekledim)
+import './internationalization/i18nlanguage'
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
