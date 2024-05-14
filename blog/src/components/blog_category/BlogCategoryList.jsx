@@ -64,7 +64,7 @@ function BlogCategoryList({ t, i18n, props }) {
         // 1.YOL (id useParams)
         // 2.YOL (localStorage)
         let { id, categoryName } = data
-        localStorage.setItem("blog_category_update_id", id)
+        localStorage.setItem("blog_category_update_id", data.id)
         localStorage.setItem("blog_category_nick_name", categoryName)
     }
 
