@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function BlogCategoryUpdate() {
+function BlogCategoryUpdate({ t, i18n, props }) {
   return (
     <div>BlogCategoryUpdate</div>
   )
 }
+
+export default BlogCategoryUpdate

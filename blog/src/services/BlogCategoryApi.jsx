@@ -59,7 +59,7 @@ class BlogCategoryApi{
     // http://localhost:4444/blog/category/api/v1/delete/1
     // @DeleteMapping(value="/delete/{id}")
     categoryApiDeleteById(id) {
-        return axios.put(`${BLOG_CATEGORY_API_PERSIST_URL}/update/${id}`);
+        return axios.delete(`${BLOG_CATEGORY_API_PERSIST_URL}/delete/${id}`);
     }
 } //end class BlogCategoryApi
 

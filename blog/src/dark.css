@@ -1,0 +1,9 @@
+/* dark mode */
+.App-header {
+  background-color: var(--body_background);
+  color:var(--body_color);
+}
+
+.App-header > .table{
+  color:var(--body_color);
+}
