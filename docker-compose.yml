@@ -13,4 +13,4 @@ services:
     restart: unless-stopped #on-failure
     build: ./
     ports:
-      - "4444:4444"
+      - "5555:4444"
