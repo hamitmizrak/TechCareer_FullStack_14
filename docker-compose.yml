@@ -1,0 +1,16 @@
+# docker-compose --version
+# docker-compose up
+# docker-compose up -d
+# docker-compose -f docker-compose-my.yml up
+# docker-compose down
+# docker-compose restart
+# docker-compose ps
+
+services:
+  backend_web:
+    container_name: container_spring_react
+    image: image_spring_react
+    restart: unless-stopped #on-failure
+    build: ./
+    ports:
+      - "4444:4444"

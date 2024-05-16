@@ -30,13 +30,13 @@
 	<!--properties-->
 	<properties>
 		<encoding>UTF-8</encoding>
-		<java.version>21</java.version>
+		<java.version>19</java.version>
 
 		<!--for maven-->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.target>21</maven.compiler.target>
-		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>19</maven.compiler.target>
+		<maven.compiler.source>19</maven.compiler.source>
 
 		<!--Version-->
 		<modelmapper.version>2.4.4</modelmapper.version>
@@ -374,8 +374,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>21</source>
-                    <target>21</target>
+                    <source>19</source>
+                    <target>19</target>
                 </configuration>
             </plugin>-->
 
