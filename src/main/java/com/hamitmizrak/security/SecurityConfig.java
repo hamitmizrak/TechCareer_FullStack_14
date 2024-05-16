@@ -22,35 +22,41 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 // LOMBOK
 @RequiredArgsConstructor
 
-// SECURITY
-@Configuration
-@EnableWebSecurity
-
 // H2-Console
 /*@ConditionalOnProperty(
         value = "spring.h2.console.enabled",
         havingValue = "true",
         matchIfMissing = false
 )*/
+
+// SECURITY
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig {
+
 
     // Application Properties
    /*
-   @Value("${spring.security.user}")
+   @Value("${spring.security.web.user.name}")
     private String user;
 
-    @Value("${spring.security.password}")
+   @Value("${spring.security.web.user}")
+    private String user;
+
+    @Value("${spring.security.web.password}")
     private String password="root";
 
     @Value("${spring.security.roles}")
     private String roles;
     */
 
+    // PASSWORD ENCODER
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // WEB DOSYALARINA ERİŞİM (CS,JS)
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().
@@ -85,6 +91,7 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(admin,writer);
     }
 
+    // SECURITY FILTER CHAIN
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
